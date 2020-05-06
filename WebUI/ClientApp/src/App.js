@@ -5,6 +5,8 @@ import Home from './components/Home';
 import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 import ProductsPage from './components/products';
+import GalleryPage from './components/gallery/GalleryPage';
+
 
 export default () => (
   <Layout>
@@ -12,5 +14,6 @@ export default () => (
     <Route path='/counter' component={Counter} />
     <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
     <Route path='/products/:page?' component={ProductsPage} />
+    <Route path='/gallery' component={GalleryPage} />
   </Layout>
 );

@@ -1,35 +1,46 @@
 import React, { Component } from 'react';
+import { Col } from 'reactstrap';
+import axios from 'axios';
 
 
 class GalleryPage extends Component {
     state = {
         images: [
-            {
-                id: 1,
-                url: "https://avatars.mds.yandex.net/get-zen_doc/1657335/pub_5d90d04d8f011100ad16812d_5d90ddefdf944400ad95f764/scale_1200",
-                title: "Oksana"
-            },
-            {
-                id: 2,
-                url: "https://www.biletik.aero/upload/resize_cache/medialibrary/227/compressed/22743d951e0d5711a029e686c7db39e7.jpg",
-                title: "Yana+Lena"
-            }
 
         ],
 
     }
+    componentDidMount() {
+        axios.get("/api/gallery")
+            .then(res => {
+                console.log(res);
+
+this.setState({images: res.data});
+
+            });
+
+    }
+
     render() {
         const { images } = this.state;
         const content = images.map(item =>
-            <div key={item.id} >
-                <img src={item.url} />
+            <div className="col-md-4" key={item.id} >
+
+                <div className="card" >
+                    <h5 className="card-title">{item.title}</h5>
+                    <img className="card-img-top" src={item.url} alt="Card image cap" />
+                    <div className="card-body">
+
+
+                    </div>
+                </div>
             </div>
         );
 
         return (
             <>
                 <h1>Gallery</h1>
-                {content}
+                <div className="row" >  {content}  </div>
             </>);
     }
 }

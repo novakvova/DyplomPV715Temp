@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Entities
 {
-    public class DbUserRole : IdentityUserRole<int>
+    public class DbUserRole : IdentityUserRole<string>
     {   
         public virtual DbUser User { get; set; }
         public virtual DbRole Role { get; set; }

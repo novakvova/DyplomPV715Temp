@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebUI.Entities
 {
-    public class DbUser : IdentityUser<int>
+    public class DbUser : IdentityUser<string>
     {        public ICollection<DbUserRole> UserRoles { get; set; }
     }
 }

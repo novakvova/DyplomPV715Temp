@@ -23,7 +23,7 @@ namespace WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<DBApplicationContext>(c =>
+            services.AddDbContext<EFDbContext>(c =>
                 c.UseSqlServer(Configuration.GetConnectionString("myConection")));
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

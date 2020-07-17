@@ -6,6 +6,7 @@ import Counter from './components/Counter';
 import FetchData from './components/FetchData';
 import ProductsPage from './components/products';
 import GalleryPage from './components/gallery/GalleryPage';
+import Register from './components/views/SignUp';
 
 
 export default () => (
@@ -15,5 +16,6 @@ export default () => (
     <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
     <Route path='/products/:page?' component={ProductsPage} />
     <Route path='/gallery' component={GalleryPage} />
+    <Route path='/reg' component={Register}/>
   </Layout>
 );

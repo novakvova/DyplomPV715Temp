@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebUI.Migrations
 {
-    public partial class db : Migration
+    public partial class db2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

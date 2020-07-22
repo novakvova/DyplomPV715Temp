@@ -10,8 +10,8 @@ using WebUI.Entities;
 namespace WebUI.Migrations
 {
     [DbContext(typeof(DBApplicationContext))]
-    [Migration("20200511180354_db")]
-    partial class db
+    [Migration("20200722140933_db2")]
+    partial class db2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

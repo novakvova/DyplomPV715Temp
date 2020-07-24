@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebUI.Entities;
 
 namespace WebUI.Migrations
 {
     [DbContext(typeof(DBApplicationContext))]
-    partial class DBApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200724101258_db_Set_Classes")]
+    partial class db_Set_Classes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,21 +133,6 @@ namespace WebUI.Migrations
                     b.ToTable("Classes");
                 });
 
-            modelBuilder.Entity("WebUI.Entities.Days", b =>
-                {
-                    b.Property<int>("Day_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Day_Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Day_Id");
-
-                    b.ToTable("Days");
-                });
-
             modelBuilder.Entity("WebUI.Entities.DbRole", b =>
                 {
                     b.Property<int>("Id")
@@ -258,136 +245,6 @@ namespace WebUI.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Lessons", b =>
-                {
-                    b.Property<int>("Lesson_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("Day_Id1")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Lesson_Day_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Lesson_Id");
-
-                    b.HasIndex("Day_Id1");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("Lessons");
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Mark", b =>
-                {
-                    b.Property<int>("MarkTypeId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("DbUserId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MarkType_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PupilId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MarkTypeId");
-
-                    b.HasIndex("DbUserId");
-
-                    b.HasIndex("MarkType_Id");
-
-                    b.HasIndex("PupilId");
-
-                    b.HasIndex("SubjectId");
-
-                    b.ToTable("Marks");
-                });
-
-            modelBuilder.Entity("WebUI.Entities.MarkType", b =>
-                {
-                    b.Property<int>("MarkType_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("MarkType_Number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("MarkType_Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("MarkType_Id");
-
-                    b.ToTable("MarkTypes");
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Pupil", b =>
-                {
-                    b.Property<int>("Pupil_Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("Class_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("DbRoleId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Pupil_Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Pupil_Birthday")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Pupil_ClassId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Pupil_Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pupil_FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pupil_LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pupil_Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pupil_Phone")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Pupil_Role_Id")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Pupil_Sex")
-                        .HasColumnType("bit");
-
-                    b.HasKey("Pupil_Id");
-
-                    b.HasIndex("Class_Id");
-
-                    b.HasIndex("DbRoleId");
-
-                    b.ToTable("Pupils");
                 });
 
             modelBuilder.Entity("WebUI.Entities.SubjectUser", b =>
@@ -505,55 +362,6 @@ namespace WebUI.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Lessons", b =>
-                {
-                    b.HasOne("WebUI.Entities.Days", "Day_Id")
-                        .WithMany()
-                        .HasForeignKey("Day_Id1");
-
-                    b.HasOne("WebUI.Entities.Subjects", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Mark", b =>
-                {
-                    b.HasOne("WebUI.Entities.DbUser", "DbUser")
-                        .WithMany()
-                        .HasForeignKey("DbUserId");
-
-                    b.HasOne("WebUI.Entities.MarkType", "MarkType")
-                        .WithMany()
-                        .HasForeignKey("MarkType_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebUI.Entities.Pupil", "Pupil")
-                        .WithMany()
-                        .HasForeignKey("PupilId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebUI.Entities.Subjects", "Subject")
-                        .WithMany()
-                        .HasForeignKey("SubjectId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("WebUI.Entities.Pupil", b =>
-                {
-                    b.HasOne("WebUI.Entities.Class", "Class")
-                        .WithMany()
-                        .HasForeignKey("Class_Id");
-
-                    b.HasOne("WebUI.Entities.DbRole", "DbRole")
-                        .WithMany()
-                        .HasForeignKey("DbRoleId");
                 });
 
             modelBuilder.Entity("WebUI.Entities.SubjectUser", b =>

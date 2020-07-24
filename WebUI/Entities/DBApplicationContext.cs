@@ -28,7 +28,23 @@ namespace WebUI.Entities
                     .WithMany(r => r.UserRoles)
                     .HasForeignKey(ur => ur.UserId)
                     .IsRequired();
+
+                //звязкі
+                                                          
             });
         }
+        public virtual DbSet<DbUser> Users { get; set; }
+        public virtual DbSet<DbRole> Roles { get; set; }
+        public virtual DbSet<DbUserRole> UserRoles { get; set; }
+        public virtual DbSet<Pupil> Pupils { get; set; }
+        public virtual DbSet<Subjects> Subjects { get; set; }
+        public virtual DbSet<UserClasses> UserClasses { get; set; }
+        public virtual DbSet<SubjectUser> SubjectUsers { get; set; }
+        public virtual DbSet<Class> Classes { get; set; }
+        public virtual DbSet<Days> Days { get; set; }
+        public virtual DbSet<Lessons> Lessons{ get; set; }
+        public virtual DbSet<Mark> Marks { get; set; }
+        public virtual DbSet<MarkType> MarkTypes { get; set; }
+
     }
 }

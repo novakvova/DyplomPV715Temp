@@ -1,5 +1,6 @@
-import React from 'react';
-import { Route } from 'react-router';
+import React, { Component } from 'react';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import Desk from './components/Desk'
 import Layout from './components/Layout';
 import Home from './components/Home';
 import Counter from './components/Counter';
@@ -8,14 +9,25 @@ import ProductsPage from './components/products';
 import GalleryPage from './components/gallery/GalleryPage';
 import Register from './components/views/SignUp';
 
+const loading = () => <div>Loading...</div>;
 
-export default () => (
-  <Layout>
-    <Route exact path='/' component={Home} />
-    <Route path='/counter' component={Counter} />
-    <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
-    <Route path='/products/:page?' component={ProductsPage} />
-    <Route path='/gallery' component={GalleryPage} />
-    <Route path='/reg' component={Register}/>
-  </Layout>
-);
+// Pages
+const desk = React.lazy(() => import('./components/Desk'));
+
+
+class App extends Component {
+
+  render() {
+    return (
+      <Router>
+          <React.Suspense fallback={loading()}>
+              <Switch>
+                                    
+                  <Route path="/desk" name="Desk" render={props => <Desk {...props} />} />                
+              </Switch>
+              </React.Suspense>
+    </Router>
+  );
+}
+}
+export default App;

@@ -18,6 +18,8 @@ namespace WebUI.Entities
         [Key]
         public int Subject_Id { get; set; }
         public string Subject_Name { get; set; }
+        public ICollection<SubjectUser> SubjectUsers { get; set; }
+        
     }
 }
 
